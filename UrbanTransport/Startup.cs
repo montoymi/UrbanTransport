@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using UrbanTransport.Models;
+using UrbanTransport.Data;
 
 namespace UrbanTransport
 {
@@ -33,10 +36,13 @@ namespace UrbanTransport
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<UrbanTransportContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("UrbanTransportContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UrbanTransportContext context)
         {
             if (env.IsDevelopment())
             {
@@ -58,6 +64,8 @@ namespace UrbanTransport
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DbInitializer.Initialize(context);
         }
     }
 }

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<UrbanTransport.Models.ControlRecord>
+
+@{
+    ViewData["Title"] = "Ejecución de rutas";
+}
+
+<h2>Ejecución de rutas</h2>
+
+<p>
+    <a asp-action="Create"><button class="btn btn-primary">Nuevo</button></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RecorDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckPoint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecorDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckPoint.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bus.LicencePlate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

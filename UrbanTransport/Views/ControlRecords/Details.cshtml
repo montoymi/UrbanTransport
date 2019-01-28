@@ -1,0 +1,42 @@
+﻿@model UrbanTransport.Models.ControlRecord
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Ejecución de ruta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecorDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RecorDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckPoint)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckPoint.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bus.LicencePlate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>
